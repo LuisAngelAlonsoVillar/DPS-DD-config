@@ -1,0 +1,14 @@
+
+encriptación de filesystem  ???
+
+Retention Lock Compliance   ???
+
+Configurar la red
+Configurar ipmi
+    ipmi config bmc0a ipaddress <ipmi-ip-dd> netmask 255.255.255.0 gateway <ipmi-gw-dd>
+Conectar a ESRS
+    support connectemc device register   <adm-ip-dd>   esrs-gateway <ip-esrs-gateway>
+Modificar support notification method
+    support notification method set $notificationMethod
+Revisar Connectivity Hub
+    https://connectivityhub.dell.com/#/home
