@@ -9,7 +9,9 @@ import funciones
 print("---Conectarse al DD como sysadmin.")
 cliente = paramiko.SSHClient()
 resultado = funciones.conectar_a_data_domain(variable.ipDD, variable.usuarioSys, variable.passwordSys, cliente)
-print(f"---{resultado}")
+print(f"---Conectarse al DD como sysadmin: {resultado}")
+if resultado == "NOT OK":
+    exit()
 ### FIN CONECTAR AL DATA DOMAIN A CONFIGURAR como SYSADMIN
 
 #########     CREACIÓN DE FILESYSTEM     #########
@@ -27,33 +29,23 @@ print("\n#####     Fin preparación de filesystem.")
 print("\n#####     Revisión CIFS.")
 canal = cliente.invoke_shell()
 cmd = f"cifs status"
-print(f"\n---Ejecución de comando \"{cmd}\"")
 resultado = funciones.send_cmd_shell(cmd,canal)
-print(f"---Ejecución de comando \"{cmd}\": {resultado}")
 
 canal = cliente.invoke_shell()
 cmd = f"cifs option show all"
-print(f"\n---Ejecución de comando \"{cmd}\"")
 resultado = funciones.send_cmd_shell(cmd,canal)
-print(f"---Ejecución de comando \"{cmd}\": {resultado}")
 
 canal = cliente.invoke_shell()
 cmd = f"cifs option set restrict-anonymous enabled"
-print(f"\n---Ejecución de comando \"{cmd}\"")
 resultado = funciones.send_cmd_shell(cmd,canal)
-print(f"---Ejecución de comando \"{cmd}\": {resultado}")
 
 canal = cliente.invoke_shell()
 cmd = f"cifs option show all"
-print(f"\n---Ejecución de comando \"{cmd}\"")
 resultado = funciones.send_cmd_shell(cmd,canal)
-print(f"---Ejecución de comando \"{cmd}\": {resultado}")
 
 canal = cliente.invoke_shell()
 cmd = f"cifs disable"
-print(f"\n---Ejecución de comando \"{cmd}\"")
 resultado = funciones.send_cmd_shell(cmd,canal)
-print(f"---Ejecución de comando \"{cmd}\": {resultado}")
 print("\n#####     Fin revisión CIFS.")
 #########  FIN REVISION CIFS       #########
 
@@ -62,15 +54,11 @@ print("\n#####     Inicio revisión NFS.")
 
 canal = cliente.invoke_shell()
 cmd = f"nfs status"
-print(f"\n---Ejecución de comando \"{cmd}\"")
 resultado = funciones.send_cmd_shell(cmd,canal)
-print(f"---Ejecución de comando \"{cmd}\": {resultado}")
 
 canal = cliente.invoke_shell()
 cmd = f"nfs option show all"
-print(f"\n---Ejecución de comando \"{cmd}\"")
 resultado = funciones.send_cmd_shell(cmd,canal)
-print(f"---Ejecución de comando \"{cmd}\": {resultado}")
 
 print("\n#####     Fin revisión NFS.")
 #########  FIN REVISION NFS        #########
@@ -80,42 +68,31 @@ print("\n#####     Inicio revisión ddboost.")
 
 canal = cliente.invoke_shell()
 cmd = f"ddboost status"
-print(f"\n---Ejecución de comando \"{cmd}\"")
 resultado = funciones.send_cmd_shell(cmd,canal)
-print(f"---Ejecución de comando \"{cmd}\": {resultado}")
+
 canal = cliente.invoke_shell()
 cmd = f"ddboost enable"
-print(f"\n---Ejecución de comando \"{cmd}\"")
 resultado = funciones.send_cmd_shell(cmd,canal)
-print(f"---Ejecución de comando \"{cmd}\": {resultado}")
 
 canal = cliente.invoke_shell()
 cmd = f"ddboost file-replication option show"
-print(f"\n---Ejecución de comando \"{cmd}\"")
 resultado = funciones.send_cmd_shell(cmd,canal)
-print(f"---Ejecución de comando \"{cmd}\": {resultado}")
 
 canal = cliente.invoke_shell()
 cmd = f"ddboost option show"
-print(f"\n---Ejecución de comando \"{cmd}\"")
 resultado = funciones.send_cmd_shell(cmd,canal)
-print(f"---Ejecución de comando \"{cmd}\": {resultado}")
+
 
 canal = cliente.invoke_shell()
 cmd = f"ddboost option set global-authentication-mode none global-encryption-strength high"
-print(f"\n---Ejecución de comando \"{cmd}\"")
 resultado = funciones.send_cmd_shell(cmd,canal)
-print(f"---Ejecución de comando \"{cmd}\": {resultado}")
 
 canal = cliente.invoke_shell()
 cmd = f"ddboost option show"
-print(f"\n---Ejecución de comando \"{cmd}\"")
 resultado = funciones.send_cmd_shell(cmd,canal)
-print(f"---Ejecución de comando \"{cmd}\": {resultado}")
 
 print("\n#####     Fin revisión ddboost.")
 #########  FIN REVISION DDBOOST    #########
-
 
 
 cliente.close()

@@ -9,7 +9,9 @@ import funciones
 print("---Conectarse al DD como sysadmin.")
 cliente = paramiko.SSHClient()
 resultado = funciones.conectar_a_data_domain(variable.ipDD, variable.usuarioSys, variable.passwordSys, cliente)
-print(f"---{resultado}")
+print(f"---Conectarse al DD como sysadmin: {resultado}")
+if resultado == "NOT OK":
+    exit()
 ### FIN CONECTAR AL DATA DOMAIN A CONFIGURAR como SYSADMIN
 
 #########     CONFIGURACION ADICIONAL          #########
