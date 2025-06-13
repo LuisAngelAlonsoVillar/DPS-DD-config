@@ -1,7 +1,7 @@
 import os
 
-ipDD =          "192.168.227.150"
-serialNumber =  "AUDVX8NDH8FEYP"
+ipDD =          "192.168.227.130"
+serialNumber =  "AUDVX8NBKMFEUP"
 usuarioSys =       "sysadmin"
 passwordSys =      "D3ll.3MC.1234567"
 
@@ -99,3 +99,10 @@ securityUserAdicionalUID		=  "603"
 tierActive  = f"dev3 spindle-group 1"
 tierCache   = f""
 ### FIN PREPARACIÓN DE FILESYSTEM
+
+### ENCRIPTACIÓN DE FILESYSTEM
+tierActive  = f"dev3 spindle-group 1"
+tierCache   = f""
+### FIN ENCRIPTACIÓN DE FILESYSTEM
+passphraseForFileEncription     =   "Dell.EMC.passphrase.1234567"
+clave_ssh = "/home/alonsl/.ssh/id_rsa.pub"

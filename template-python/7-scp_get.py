@@ -4,6 +4,7 @@ import time
 
 import variable
 import funciones
+import scp
 
 ### CONECTAR AL DATA DOMAIN A CONFIGURAR como SYSADMIN
 print("---Conectarse al DD como sysadmin.")
@@ -14,13 +15,19 @@ if resultado == "NOT OK":
     exit()
 ### FIN CONECTAR AL DATA DOMAIN A CONFIGURAR como SYSADMIN
 
-#########	LICENCIAR EL DD	#########
-print("\n#####     Licenciamiento del Data Domain.")
-
+### ENVIAR CLAVE SSH
 canal = cliente.invoke_shell()
-resultado = funciones.licenciar_Data_Domain(canal)
-print(f"Resultado de licenciamiento del Data Domain \"{variable.hostname}\": {resultado}")
-#########	LICENCIAR EL DD	#########
+resultado = funciones.send_clave_ssh(variable.clave_ssh, canal)
+### FIN ENVIAR CLAVE SSH
+
+#########  FIN ENCRIPTACIÓN DE FILESYSTEM     #####
+cmd = f""
+def ejecutar_comando(cmd):
+#########  FIN ENCRIPTACIÓN DE FILESYSTEM     #####
+
+
+
+
 
 cliente.close()
 
